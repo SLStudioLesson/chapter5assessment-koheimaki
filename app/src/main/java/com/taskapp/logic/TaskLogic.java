@@ -49,12 +49,12 @@ public class TaskLogic {
             } else if (task.getStatus() == 2) {
                 status = "完了";
             }
-            String name = task.getName();
+            String name = task.getRepUser().getName();
             if (loginUser.getCode() == task.getRepUser().getCode()) {
                 name = "あなた";
             }
             System.out.println(task.getCode() + ". タスク名：" + task.getName() + ", 担当者名：" +
-                                name + ". タスク名：" + status);
+                                name + "が担当しています, ステータス：" + status);
         });
     }
 

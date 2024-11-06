@@ -203,17 +203,17 @@ public class TaskUI {
                     continue;
                 }
                 System.out.println("どのステータスに変更するか選択してください。\n1. 着手中, 2. 完了");
-                System.out.print("選択肢");
+                System.out.print("選択肢:");
                 String status = reader.readLine();
-                switch (status) {
-                    case "1":
-                        status = "1";
-                        break;
-                    case "2":
-                        status = "2";
-                    default:
-                        System.out.println("ステータスは1・2の中から選択してください");
-                        break;
+                if (!isNumeric(status)) {
+                    System.out.println("コードは半角の数字で入力してください");
+                    System.out.println();
+                    continue;
+                }
+                if (!(status.equals("1") || status.equals("2"))) {
+                    System.out.println("ステータスは1・2の中から選択してください");
+                    System.out.println();
+                    continue;
                 }
 
                 taskLogic.changeStatus(Integer.parseInt(code), Integer.parseInt(status), loginUser);

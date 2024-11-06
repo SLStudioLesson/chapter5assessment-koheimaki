@@ -108,14 +108,17 @@ public class TaskDataAccess {
     public void update(Task updateTask) {
         List<Task> tasks = findAll();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("Code,Name,Status,Rep_User_Code");
+            writer.write("Code,Name,Status,Rep_User_Code\n");
 
             String line;
             for (Task task : tasks) {
                 if (task.getCode() == updateTask.getCode()) {
                     line = createLine(updateTask);
-                    writer
+                } else {
+                    line = createLine(task);
                 }
+                writer.write(line);
+                writer.newLine();
             }
 
         } catch (IOException e) {
